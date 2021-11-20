@@ -1,0 +1,174 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% filename    : sp.tex
+% author      : Karl Frederick Roldan, Gerd Lowell Jana, John Kenneth Lesaba
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% BUGFIX: Save LaTeX kernel version of \@xfloat
+\makeatletter
+\let\my@xfloat\@xfloat
+\makeatother
+
+% use ateneo de naga etd class (actually modified virginia tech's etd class)
+\documentclass[oneside]{etd}
+
+% BUGFIX: Create a modified copy of \@xfloat using the kernel definition
+\makeatletter
+\def\@xfloat#1[#2]{
+	\my@xfloat#1[#2]%
+	\def\baselinestretch{1}%
+	\@normalsize \normalsize
+}
+\makeatother
+
+% use these packages
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{latexsym}
+\usepackage{amsmath}
+%\usepackage[lineno5,noindent]{lgrind}
+%\usepackage{rotating} 
+%\usepackage{makeidx}
+%\usepackage{stmaryrd}
+\usepackage{float}
+\usepackage{subfigure}
+%\usepackage{cite}
+%\usepackage{moreverb}
+%\usepackage{pictexwd,dcpic}
+\usepackage{algorithm,algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+
+\usepackage{listings}
+\definecolor{cppred}{rgb}{0.6,0,0} % for strings
+\definecolor{cppgreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{cpppurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{cppdocblue}{rgb}{0.25,0.35,0.75} % doc
+ 
+\lstset{language=C++,
+basicstyle=\linespread{0.8}\ttfamily\small,
+keywordstyle=\color{cpppurple}\bfseries,
+stringstyle=\color{cppred},
+commentstyle=\color{cppgreen},
+morecomment=[s][\color{cppdocblue}]{/**}{*/},
+numbers=left,
+numberstyle=\tiny\color{black},
+% stepnumber=2,
+numbersep=10pt,
+tabsize=4,
+showspaces=false,
+showstringspaces=false}
+
+\graphicspath{{figures/}{./}}
+
+%\renewcommand{\floatpagefraction}{0.8}
+
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Multiclass classification via Transformer Networks for Task Constraint-based Introductory Programming Feedback}
+\author{My Name}
+\department{Computer Science}
+\BSdegree
+\field{Computer Science}
+\degreemonth{May}  % date of final defense
+\degreeyear{2022}
+
+\threestudents
+{Gerd Lowell Jana}
+{John Kenneth Lesaba}
+{Karl Frederick Roldan}
+
+\threestudentsheader
+{Jana, Lesaba, and Roldan}
+
+\threedegrees
+{Computer Science}
+{Computer Science}
+{Computer Science}
+
+
+\advisor
+{Joshua C. Martinez, MIT}
+\threemembers
+{Raphael Henry M. Garay}
+{Glenn G. Fabia}
+{John Sixto G. Santos, MS}
+\deanandchair
+{Joshua C. Martinez, MIT}
+{Adrian Leo Pajarillo, MS}
+
+\keywords{CS Education, transformer}
+
+
+\begin{document}
+
+\maketitle
+\makerecomm
+\makeacceptance
+\makedeclaration
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    ABSTRACT/EXECUTIVE SUMMARY                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%execsummary
+\begin{abstract}
+	Task constraint feedback is a kind of feedback that checks whether problem-defined 
+	constraints were fulfilled by students upon submission of work. The feedback process 
+	can be as simple as checking if a certain programming construct exists or if the 
+	student used a specific algorithm or data structure as prescribed by the problem. 
+	Most task constraint systems, such as \textit{WeBWoRK-JAG} and \textit{Fischer06}, use basic static 
+	analysis and comprehensive automated testing. ProPL, a task constraint checker, is 
+	an exemption which uses natural language processing techniques to generate feedback. 
+	In this study, the proponents will use Transformer Networks which have been known to 
+	work really well with sequence-to-sequence natural language models such as neural 
+	translation, text generation, and summarization. Previous works showed evidence 
+	that transformer networks can be generalized for use in programming language processing 
+	such as code generation. The study will apply transformer networks to generate classes 
+	that are used in the submitted codes of students to generate relevant task constraint 
+	feedback. This study aims to show how transformers can be applied in aiding computer 
+	science education through task-constraint feedback.
+\end{abstract}
+
+	
+\include{misc/dedication}
+\include{misc/acknowledgements}
+
+\begingroup
+\renewcommand*{\addvspace}[1]{}
+\tableofcontents
+% \listoffigures
+% \listoftables
+\endgroup
+
+\beginbody
+\pagenumbering{arabic}
+
+\include{chapters/introduction}
+\include{chapters/review}
+\include{chapters/techbackground}
+\include{chapters/methodology}
+% \include{chapters/results}
+% \include{chapters/recommendations}
+
+\appendix
+\include{appendices/researchtimeline}
+% \include{appendices/evaltool}
+% \include{appendices/reports}
+% \include{appendices/io}
+% \include{appendices/code}
+% \include{appendices/usersguide}
+
+\nocite{*}
+\bibliographystyle{siam}
+\bibliography{sources.bib}
+
+
+
+% \include{misc/vita}
+
+\end{document}

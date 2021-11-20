@@ -1,0 +1,37 @@
+\section{Sequence Models}
+
+Sequence models are machine learning algorithms that are designed to input and/or 
+output sequential data such as time series, audio, signals, texts, and videos. 
+Four common sequence model types have been proposed: one-to-many, many-to-one, 
+many-to-many with equal input and output lengths, and many-to-many with varying 
+input and output lengths. Such models were used in applications including translation, 
+image captioning, sentiment analysis, and many more\cite{yousuf2021systematic}. 
+
+Different neural networks had been proposed with varying performance on different 
+tasks in the past decades. The Recurrent Neural Network\cite{hinton1986learning} was one of 
+the first sequence models that was introduced. The LSTM\cite{hochreiter1997long} 
+and the GRU\cite{chung2014empirical} were introduced as modified versions of the hidden layer 
+of RNN which showed significant performance improvements and eliminated the vanishing 
+gradient problem of the RNN.\@ Vaswani et al.\cite{vaswani2017attention} had taken a different 
+approach by introducing a model, the transformer, that takes a sequence as a whole 
+instead of sequentially (as in the RNN and its variants) which renders NLP to be 
+easily parallelized and self-attention which computes how words in a sequence are 
+related to each other.
+
+\subsection{Advances on Programing Language Processing in Machine Learning}
+
+Recent breakthroughs have shown that sequence models can be generalized to 
+programming languages as well. Central themes on research include code summarization\cite{xie2021exploiting} 
+which can help in automatically commenting a snippet of code, 
+code-clone detection\cite{wei2017supervised} which can be used for finding functional 
+similarities for two code snippets that look distinct from each other, and code 
+completion\cite{alon2020structural} which can be used for assistance when coding.
+
+Processing programming languages on a neural network implies that code has 
+to be embedded to a series of vectors that represent code semantics or 
+syntax which can serve as input by the network. Due to this, much work 
+has been done on developing ways to generate code embeddings such as 
+processing Abstract Syntax Trees (AST) on CNNs and RNNs,\cite{mou2016convolutional}\cite{chen2019capturing}
+descriptive program embeddings of a single code snippet on a function 
+level\cite{alon2019code2vec} by encoding through AST paths\cite{alon2018code2seq}, 
+and  using Hoare triples of a program\cite{piech2015learning}. 

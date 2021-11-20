@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Theoretical Background}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Transformers}
+
+Vaswani et al\cite{vaswani2017attention} described transformers as sequence 
+models that solely focus on self-attention without the need for recurrence which 
+eliminates the need for unfolding during the backpropagation phase of learning. 
+In the paper, attention was defined with respect to keys, values, and queries. 
+The attention is computed with
+
+\[ 
+    attention(K,Q,V) = \left(\frac{QK^T}{\sqrt{dim(K)}}\right)V 
+\]
+
+where K is the key matrix, Q is the query matrix, and V is the value matrix. 
+The dot product of Q and K is scaled by the square root of the dimension of K.
+
+Transformer models take the whole input as a whole instead of recurrently meaning 
+that the model does not know the order of the words in the sequence. Hence, the 
+paper proposed the use of positional encodings through sinusoidal functions 
+added to the embedded vectors. Suppose that W is a matrix where each column 
+corresponds to a position pos and each row i corresponds to the individual 
+dimensions in the model which alters the frequency. Let 
+\begin{math}
+    W=10000^2i/embedsize
+\end{math}
+where embedsize is a hyperparameter which is also the embedding size of the 
+embedded vectors. Then, the positional encoding is calculated by
+\[ 
+    POS(pos,i) = \sin\left(\frac{pos}{W}\right) \text{if \textit{i} is even and}
+\]
+\[ 
+    POS(pos,i) = \cos\left(\frac{pos}{W}\right) \text{if \textit{i} is odd}
+\]
+The key component of transformers is the multi-headed attention layer, wherein 
+attention is computed multiple times and concatenated together. Transformers 
+were able to outperform established models for machine translation with 
+English-German translation.
+
+\section{RoBERTa for Classification}
+RoBERTa\cite{liu2019roberta} is a replication study of the original BERT 
+model by finer-tuning hyperparameters and removing the Next Sentence 
+Prediction task which was shown that it does not negatively affect the 
+performance of the model. While the original transformer by Vaswani et al.\ 
+is a Seq2Seq transformer, RoBERTa is an autoencoder transformer trained on a 
+large corpus, which can be used with fine-tuning or transfer learning for 
+different downstream tasks such as classification\cite{pritzkau2021nlytics}.
+
+In this paper, the researchers will use the CodeBERT\cite{feng2020codebert} 
+to be used with transfer learning on algorithm classification. The CodeBERT 
+model is a variant of RoBERTa pretrained on multiple programming languages 
+including Java, Python, and Javascript.
+
+\subsection{Model Architecture}
+
+The CodeBERT model is a bidirectional transformer using a similar architecture 
+with RoBERTa without any architectural modification.
+
+\subsection{Dataset}
+
+CodeBERT was trained on a large corpus of about 8million codes of both bimodal 
+and unimodal data. Bimodal data means that for each code snippet, 
+there is an accompanying natural language snippet while unimodal data 
+implies the absence of the natural language snippet. The data were gathered from 
+GitHub, which was collected by Husain et al\cite{husain2020codesearchnet}.
+
+\section{Task-Constraint Feedback}
+
+Knowledge About Task-Constraints (KTC) feedback systems employ the use of limiting 
+the submission by adding requirements, called \textit{constraints}, that will tell the 
+student if they haven’t completed the requirement.\cite{keuning2016towards} One of the methods used 
+is \textit{Hints on Task Requirements} (TR) wherein a hint will be given when a task was 
+not completed. As an example, suppose that the problem setter asked to balance a 
+binary search tree using red-black trees. However, the submitter was able to 
+complete the problem using an AVL tree. The TR system should give some feedback 
+that the Red-Black Tree is a requirement for the given problem.
+
+\section{Algorithm Classification}
+Algorithms and data structure can be written multiple ways with different stylistic 
+and data structure choices. The researchers define algorithm classification as to 
+what algorithm some code snippet is implementing, rather than the class such as 
+sorting, searching, etc. Introductory algorithm textbooks\cite{velivckovic2021clrs}\cite{skiena2020algorithm}\cite{sedgewick2011algorithms} 
+have a good resource on the algorithm names through its table of contents which will 
+be used as labels in the classifier. With this, this research defines algorithm 
+classification by tagging code snippets as to the question “what is the algorithm 
+name that this code snippet is implementing?” 
+
+In computer science education, students might use multiple algorithms into one file 
+and begin using different data structures for their implementations. As an example, 
+consider the task of implementing a \textit{priority queue} (the \textit{priority queue} is a classification). 
+The priority queue data structure can be implemented with \textit{binary heaps} or dictionaries 
+such as \textit{linked lists} and \textit{binary search trees}; in this example, assume that the priority 
+queue is implemented with a \textit{binary heap}. Introductory programming students might usually 
+be coding these algorithms and algorithms manually into one file and it is not enough to 
+say that the submission implements a \textit{priority queue} since a \textit{binary heap} is also implemented. 
+
+Suppose that the code snippet implements an algorithm and uses some data structure or 
+another algorithm using the language’s standard library, then the snippet will only be 
+classified using the manual implementation disregarding the standard library function. 
+Likewise, code snippets that do not belong to any algorithms stated in any of the 
+introductory algorithm textbooks are said not to use any algorithm. These code snippets 
+usually contain the \textit{main} function (but not always), setter and getter functions, 
+and boilerplate codes.

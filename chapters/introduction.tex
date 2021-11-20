@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+In the area of Information Technologies, there is a constant demand for Computer Programming. 
+The application and study of fundamental concepts such as data structures and algorithms are 
+needed for programmers as a core. Since competitive programming is one of the main ways to 
+introduce these concepts, the assessments of these programs enable the skills of a programmer 
+to develop\cite{oqvist2018coding}.
+
+Automated assessment of programming codes has been widely used in competitive programming 
+sites such as HackerEarth, CodeChef, etc.\ to aid in evaluating solutions to problem sets. 
+Most of these systems utilize black-box testing wherein it inputs test cases to the submitted 
+solution and compares its output to the expected output encoded by the problem setter. 
+In this paper, we aim to build on existing automated program evaluation methods by adding 
+algorithm detection in order to allow problem setters to fine-tune their problems by means of 
+assigning and implementing task-constraints, and in turn provide a more formative feedback to 
+students. The researchers will use the current state of the art Transformer Network to act as 
+a classifier. This feedback system will then be implemented on Project CodeC (Coder’s Circle), 
+a multifunctional web-based platform that aims to combine competitive programming, social networks, 
+and a classroom-based Virtual Learning Environment (VLE), and is currently under the development 
+of Ateneo de Naga University, College of Computer Studies.
+
+
+
+
+\section{Project Context}
+
+In task-constraint based feedback, an additional verification of student submission is done 
+on the submission checker whether the student was able to complete the task. On a control 
+structure level, this is easy since the task-constraint can be observed statically using a 
+parser and checking whether the code uses an `if' or a `while', etc.
+
+This problem is more difficult when the task is to use a certain algorithm. For example, 
+a teacher may require the students to use the quicksort algorithm in the problem instead 
+of mergesort. However, when a student submits a code to an automated checker, whether 
+quicksort or mergesort will be unknown to the compiler due to the similar time complexities 
+and may still pass the problem time and space constraints. 
+
+Project CodeC aims to implement a task-constraint feedback system that fails a submission 
+if the submitter hasn’t been able to complete the task set by the problem setter despite 
+passing the space and time constraints of the problem. A sample feedback might be along the 
+lines of “Oops! Are you sure you have implemented a hashmap?”
+
+
+\section{Purpose and Description}
+Aside from checking the submitted program’s correctness using traditional code-checking, 
+Project CodeC aims to give automated formative feedback to ensure that students are 
+learning through programming. One of these feedbacks is the task-constraint feedback. 
+A problem setter may lay out some task requirements for the problem, such as whether to 
+implement and use that specific requirement, which is useful in introductory computer 
+science education.
+
+The researchers propose the use of algorithm classification on checking whether task-requirements 
+are fulfilled during the code submission. To do this, the problem setter denotes some task 
+constraints which could be specific algorithms that he/she wants implemented in the student 
+solution. When a student passes all the time and space constraints of the submission, the submission 
+is then checked if it contains all task requirements that the problem setter had chosen. 
+The feedback part notes the tasks required but were not implemented and tells the student 
+that they have not implemented the said tasks. 
+
+In this paper, we will answer the following research questions:\\
+\textbf{RQ1.} How effective would the CodeBERT Transformer model be in an algorithm classification task?\\
+
+\textbf{RQ2.} What kind of coding styles/snippets/algorithms does the Transformer perform best/worst on?
+
+The researchers believe that no research on algorithm classification has been done yet.
+
+\section{Objectives}
+General Objective
+\begin{itemize}
+    \item This research aims to develop an algorithm classification machine learning model. 
+\end{itemize}
+
+Specific Objectives
+\begin{itemize}
+    \item A multiclass classification algorithm should be able to classify algorithms given code snippets. These code snippets will be mined from GitHub repositories containing implementations of different algorithms.
+    \item The researchers will conduct studies on how the model will perform as a task-constraint feedback system using the CodeChef code submissions dataset.
+    \item Also, the researchers aim to deploy the machine learning model to Project CodeC as a service if it is deemed as accurate enough for real-world use.
+\end{itemize}
+
+
+
+
+% \vfill\eject
+\section{Scope and Limitations}
+
+Due to the limitations on covered programming languages by CodeBERT, only Java, Python, 
+and JavaScript programs will be considered. Specialized algorithms such as probabilistic 
+algorithms for the traveling salesman problem and machine learning algorithms will not be 
+considered. The researchers denote that an algorithm is introductory if it is covered in 
+the non-Advanced chapters of introductory programming textbooks\cite{velivckovic2021clrs}\cite{skiena2020algorithm}\cite{sedgewick2011algorithms}. 
+
+Also, since the research only covers the classification of algorithms. It does not aim to find 
+if an algorithm is implemented using recursion or a for loop as that can be done using static 
+analysis as shown in Chapter 2. Another area not discussed in this paper will be the effectiveness 
+of task-constraint feedback systems in programming assignments for computer science education.  

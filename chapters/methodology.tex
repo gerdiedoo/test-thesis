@@ -1,0 +1,53 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Methodology}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Dataset}
+
+The researchers will be using a custom dataset mined from public GitHub 
+repositories that contain Python, JavaScript, and Java source code, such as 
+those repositories that implement  algorithms and data structures. Labels 
+will be extracted from a number of heuristics such as method name or the 
+repository folder in the case of algorithm implementation datasets. Since 
+CodeBERT only accepts input lengths of less than 512, it is important to 
+preprocess the dataset to make sure that each code snippet contains less than 
+512 tokens\cite{devlin2018bert}\cite{liu2019roberta}.
+
+\textbf{RQ1.} Data Augmentation\cite{feng2021survey}
+will be done to make the dataset synthetically larger. To counter the challenge of 
+overfitting, that is, making sure that the model will not simply memorize variable 
+names, the researchers will be using synonym replacements on identifiers and swapping 
+consecutive lines that are declaring variables as these do not have an effect on the code. 
+Custom code extraction programs will be written for each programming language using available parsers.
+
+\textbf{RQ2.} Code snippets should be able to preserve coding styles except for the 
+comments which will not be considered.
+
+\section{Training}
+
+CodeBERT will be used for transfer learning on the custom dataset using a multiclass 
+classification task with each one-hot encoded label corresponding to one algorithm. 
+Different hyperparameters on the output layer will be used for model selection. The 
+researchers will make use of the PyTorch\cite{paszke2019pytorch} library for implementation 
+and PyTorch Lightning for training\cite{Falcon_PyTorch_Lightning_2019}.
+
+\section{Model Selection}
+
+The best performing model will be selected with the criteria based on its F1-score.
+Precision and recall are metrics that are calculated based on the true positives, 
+false positives, true negatives, and false negatives given by the formulae. 
+Once the best model has been selected, a prototype implementation of Project 
+CodeC’s task-constrained feedback feature will be implemented to test on 
+actual programming competition datasets. \( precision = \frac{true positive}{true positive + false positive}\) and 
+\( recall = \frac{true positive}{true positive + false negative}\). The F1 score balances these metrics using the formula 
+\( F1 = \frac{2(precision)(recall)}{precision + recall}\).\newline
+
+\textbf{RQ1.} The model with the highest F1 score must be the one with the best performing model. 
+Other performance metrics may be collected such as running loss and classification accuracy.
+
+\textbf{RQ2.} By recording the examples that resulted in false positives and false negatives, manual analysis will 
+be performed to identify the features that the transformer was not able to fully capture.
+
+

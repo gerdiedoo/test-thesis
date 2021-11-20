@@ -1,0 +1,41 @@
+\section{Evaluation of Programming Codes}
+
+Most competitive programming sites today use automatic 
+assessment of programming codes that has two primary 
+approaches\cite{gupta2017assessment}: Static analysis, which 
+is done by inspecting the source code of the program without 
+executing it; and Dynamic analysis, wherein a program is run and tested against different test cases.
+
+\subsection{Existing methods of automated evaluation of programming codes}
+
+Competitive programming web applications use numerous methods\cite{gupta2017assessment}\cite{nemeth2018grading} 
+in evaluating programming code. Two methods have been proposed\cite{nemeth2018grading} to evaluate codes: 
+\begin{enumerate}
+    \item The Association for Computing Machinery (ACM) - style implements black-box testing then 
+    identifies the runtime complexity and checks if it meets the maximum runtime and memory limits 
+    set by the problem setter. Only the solutions that meet these requirements are given credits and the 
+    most runtime efficient of them are ranked the highest. This method is used in ACM ICPC, CodeChef Cook - off contest, etc.; and 
+    \item The International Olympiad in Informatics (IOI) - style evaluation first groups the test files
+     according to its asymptotic complexity (e.g. $O(n)$, $O(n\log{}n)$, etc.) or logical 
+     complexity(e.g. problem restricted to an easier subproblem) and are given point equivalents. 
+     The judge gives the partial points to solutions that have the perfect (equal) complexity as 
+     it is tested among the grouped test cases. This method is used by IOI, CodeChef Lunchtime, etc.
+\end{enumerate}
+
+Furthermore, numerous techniques\cite{haldeman2021csf}\cite{watanobe2020next}\cite{lu2018modeling}\cite{yoshizawa2019logic} were proposed in assessing programs that may further the progress in computing education.
+
+\subsection{Task-constrained feedback in automated assessment systems}
+
+Task-constraint feedback systems are programs that automatically give feedback on whether the 
+submitted solution implements the required task. Among these systems include 
+WeBWork\cite{gotel2008teaching} 
+which focuses on error correction, INCOM\cite{le2009evaluation} which acts as a homework assistance system. 
+The feedback from these systems are considered essential, especially in developing countries where resources 
+and student-professor contact hours are limited.
+
+Automated assessment systems perform tests that mimic that of the Software Quality Assurance (SQA) 
+testing\cite{gotel2008teaching}. These tests are 
+done for validation that the program does what it is intended to do, and for verification that the 
+program works correctly through black-box testing. Gotel et al.\ proposed a framework that incorporates 
+these SQA principles in assessing programming code. ProPL\cite{lane2005teaching} introduced a similar 
+approach in identifying program goals and schemas, as well as in implementing correct solutions to problems.
